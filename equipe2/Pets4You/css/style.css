@@ -1,0 +1,71 @@
+.jumbotron-image-pets {
+
+background-image: url(../imagens/pets/pets-jumbotron-image.jpg);
+background-repeat: no-repeat;
+background-size: 100%;
+}
+
+.jumbotron-empresa {
+
+background-image: url(../imagens/empresa/empresa-jumbotron-image.jpg);
+background-repeat: no-repeat;
+background-size: 100%;
+
+margin-bottom: 1.5rem;
+}
+
+
+.col-md-4 {
+
+  margin-top: 1rem;
+}
+
+.texto-empresa{
+
+  margin-right: 4rem;
+  margin-left:  4rem;
+
+
+}
+
+.marketing .col-lg-4 h2 {
+
+  margin-top: 2rem;
+
+}
+
+.marketing .col-lg-4 p {
+
+  margin-top: 1.5rem;
+
+}
+
+.texto-empresa h1 {
+
+   font-size: 40px;
+
+}
+.texto-empresa p {
+
+   font-size: 20px;
+
+}
+.texto-empresa-espaco h2 {
+
+   font-size: 26px;
+
+}
+
+
+
+
+
+
+
+
+body {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+  text-align: justify;
+  font-family: 'Oswald', sans-serif;
+}

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <title>Titulo do texto</title>
+
+    <link rel="stylesheet" href="css/deposito.css">
+</head>
+<body>
+    <h1>Deposite seu valor aqui</h1>
+    <a href="/prova">
+        Voltar para pagina inicial
+    </a>
+    <form action="/deposito" method="get">
+        <br>Digite o valor a ser depositado <br> 
+        <input id="valor_-digitado" type="text" name="valor_digitado">
+        <button type="submit">Confirmar</button>
+    </form>
+     <br> Saldo atual<br>
+     <span id="saldoatual">{{saldo}}</span>
+</body>
+</hmtl>

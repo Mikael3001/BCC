@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Titulo do texto</title>
+</head>
+
+<body>
+    <h1>Verifique seu saldo</h1>
+    </li>
+        <li>
+            Saldo Atual: <span>{{saldo}}</span>
+            <br><br>
+            {% for operacao in historico %}
+                {{operacao}} <br>
+            {% endfor %}
+            <br>
+            <a href="/prova">
+                <h6>voltar para pagina inicial</h6>
+            </a>
+        </li>
+</body>
+</hmtl>
