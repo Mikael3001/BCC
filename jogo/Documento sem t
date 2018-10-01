@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>Introdução</title>
+    <script src="js/Box2d.min.js" charset="utf-8"></script>
+    <script>
+    var b2Vec2 = Box2D.Common.Math.b2Vec2,
+    b2World= Box2D.Dynamics.b2World,
+    b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
+    b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
+    b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
+    b2BodyDef = Box2D.Dynamics.b2BodyDef,
+    b2Body = Box2D.Dynamics.b2Body,
+    b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
+    b2Fixture = Box2D.Dynamics.b2Fixture;
+    var mundo,canvas,context,ultimoCiclo;
+    var escala = 30;
+        var img,personagem;
+    window.onload = function(){
+    window.addEventListener('keydown' , teclado);
+    img = new Image();
+    img.src = "img/personagem.png";
+
+    var gravidade = new b2Vec2(0,5);
+    mundo = new b2World(gravidade,true);
+    canvas = document.getElementById('tela');
+    context = canvas.getContext('2d');
+    var degbugDraw = new b2DebugDraw();
+    degbugDraw.SetSprite(context);
+    degbugDraw.SetDrawScale(escala);
+    degbugDraw.SetFillAlpha(0.8);
+    degbugDraw.SetLineThickness(1.0);
+    degbugDraw.SetFlags(b2DebugDraw.e_shapeBit);
+    mundo.SetDebugDraw(degbugDraw);
+    // criando
+    personagem = criaBlocoMovel(400, 100, 50, 50);
+    lista.push(personagem);
+    parede(0,680,890,20);//chão
+    parede(0,0,20,600);//lado esquerdo
+    parede(790,0,80,610);//ladodireito
+    parede(0,0,790,20);//teto
+    parede(100,500,90,10)
+    parede(190,400,90,10)
+
+
+
+
+    ultimoCiclo = Date.now();
+    requestAnimationFrame(animar);
+    }
+    function parede(x, y, largura, altura) {
+    // Criando um chão retangular no ambiente.
+    var chao = new b2BodyDef();
+    var meiaLargura = largura / 2,
+        meiaAltura = altura / 2;
+    chao.position.Set((x + meiaLargura) / escala, (y + meiaAltura) / escala);
+
+    var formaChao = new b2PolygonShape();
+    formaChao.SetAsBox(meiaLargura / escala, meiaAltura / escala);
+
+    var fixtureChao = new b2FixtureDef();
+    fixtureChao.shape = formaChao;
+    fixtureChao.friction = 0.8;
+
+    var corpoChao = mundo.CreateBody(chao);
+    corpoChao.CreateFixture(fixtureChao);
+}
+    function animar(){
+    var agora= Date.now();
+    var decorrido = agora-ultimoCiclo;
+    mundo.Step(decorrido/300,8,3);
+    mundo.DrawDebugData();
+    ultimoCiclo = Date.now()
+    requestAnimationFrame(animar);
+    }
+  function desenha() {
+    for (personagem1 of lista) {
+        var x = personagem1.GetWorldCenter().x * escala;
+        var y = personagem1.GetWorldCenter().y * escala;
+        var angulo = personagem1.GetAngle();
+
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angulo);
+        ctx.drawImage(img, -25, -25);
+        ctx.rotate(-angulo);
+        ctx.translate(-x, -y);
+        ctx.restore();
+    }
+    unction criaBlocoMovel(x, y, largura, altura) {
+    // Criando um chão retangular no ambiente.
+    var chao = new b2BodyDef();
+    var meiaLargura = largura /20,
+        meiaAltura = altura / 20 ;
+    chao.position.Set((x + meiaLargura) / escala, (y + meiaAltura) / escala);
+    chao.type = b2Body.b2_dynamicBody;
+
+    var formaChao = new b2PolygonShape();
+    formaChao.SetAsBox(meiaLargura / escala, meiaAltura / escala);
+    
+    var fixtureChao = new b2FixtureDef();
+    fixtureChao.shape = formaChao;
+    fixtureChao.density = 1.0;
+    fixtureChao.friction = 0.8;
+
+    var corpoMovel = mundo.CreateBody(chao);
+    corpoMovel.CreateFixture(fixtureChao);
+
+    return corpoMovel;
+}
+}
+        function teclado(e) {
+        var centro = bola.GetWorldCenter();
+        switch (e.keyCode) {
+      case 37: // Esquerda
+        var forca = new b2Vec2(-1, 0);
+        bola.ApplyImpulse(forca,centro);
+        break;
+      case 38: // Cima
+        var forca = new b2Vec2( 0, -6);
+        bola.ApplyImpulse(forca, centro);
+        break;
+      case 39: // Direita
+        var forca = new b2Vec2(1, 0);
+        bola.ApplyImpulse(forca, centro);
+        break;
+      case 40: // Baixo
+        var forca = new b2Vec2(0,5);
+        bola.ApplyImpulse(forca, centro);
+        break;
+}
+}
+
+
+
+
+
+    </script>
+    </head>
+    <body>
+    <canvas id="tela" width="800" height="600"></canvas>
+    </body>
+    </html>
